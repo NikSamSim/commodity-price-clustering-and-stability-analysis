@@ -21,9 +21,7 @@ from sklearn.metrics import silhouette_score, davies_bouldin_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-# =========================
 # 1) PREPROCESSING & FEATURE UTILITIES (VECTOR SPACE)
-# =========================
 
 def compute_log_returns(price_series: pd.Series) -> pd.Series:
     """
@@ -73,9 +71,7 @@ def extract_features_from_series(r: pd.Series) -> dict:
         "acf1": acf1
     }
 
-# =========================
 # 2) CLUSTERING (K-MEANS ALGORITHM)
-# =========================
 
 def choose_k_by_silhouette(X: np.ndarray, k_min: int = 2, k_max: int = 8, seed: int = 2123) -> int:
     """
@@ -104,9 +100,7 @@ def choose_k_by_silhouette(X: np.ndarray, k_min: int = 2, k_max: int = 8, seed: 
 
     return best_k
 
-# =========================
 # 3) DYNAMICAL MODEL & EIGENVALUES (STABILITY)
-# =========================
 
 def build_cluster_state_series(returns_wide: pd.DataFrame, members: list[str]) -> np.ndarray:
     """
@@ -164,12 +158,9 @@ class ClusterStabilityResult:
     spectral_radius: float
     stable: bool
 
-# =========================
 # 4) VISUALIZATION MODULE
-# =========================
 
-def visualize_results(X: np.ndarray, labels: np.ndarray, 
-                      feat_df: pd.DataFrame, stability_results: list[ClusterStabilityResult]):
+def visualize_results(X: np.ndarray, labels: np.ndarray, feat_df: pd.DataFrame, stability_results: list[ClusterStabilityResult]):
     """
     Integrated visualization function for generating publication-ready figures.
     """
@@ -237,9 +228,7 @@ def visualize_results(X: np.ndarray, labels: np.ndarray,
     print("\n[INFO] Analysis figure saved as 'hasil_analisis.png'")
     plt.show()
 
-# =========================
 # 5) MAIN FUNCTION
-# =========================
 
 def main(csv_path: str = "data.csv"):
     # (A) File Check
